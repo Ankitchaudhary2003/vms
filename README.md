@@ -1,2 +1,2 @@
-# vms
+#Visitors Management System GP Gauchar
 This is a project to manage the visitors on the College or Institute
