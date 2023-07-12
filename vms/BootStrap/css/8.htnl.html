@@ -1,0 +1,83 @@
+<html>
+<head>
+<title> Banner Ad Rotator Sample Page </tile>
+<script language="javascript">
+<!--
+var ImageFolder="";
+var ImageFileNames=new Array('AmazonAd1_anim.gif','InfinityPlus_BannerAd1.gif','AmazonAd2_anim.gif','InfinityP lus_BannerAd2.gif');
+var DisplayInterval=4; var TargetFrame="";
+var IsValidBrowser=false; var BannerAdCode=0;
+var BannerAdImages=new Array(NumberOfImages); var DisplayInterval=DisplayInterval * 500;
+var NumberOfImages=ImageFileNames.length;
+if(ImageFolder.substr(ImageFolder.length-1,ImageFolder.length)!="/"&&ImageFolder!="")
+{
+ImageFolder+="/";
+}
+if(TargetFrame=='')
+{
+var FramesObject=null;
+}
+else
+{
+var FramesObject=eval('parent'+TargetFrame);
+}
+function InitialiseBannerAdRotator()
+{ 
+var BrowserType=navigator.appName;
+var BrowserVersion=parseInt(navigator.appVersion);
+if (BrowserType=="Netscape"&&(BrowserVersion>=3))
+{
+IsValidBrowser=true;
+}
+if(BrowserType=="Microsoft Internet Explorer"&&(BrowserVersion>=4))
+{
+IsValidBrowser=true;
+}
+if(IsValidBrowser)
+{
+TimerObject=setTimeout("ChangeImage()",DisplayInterval); BannerAdCode=0;
+for(i=0;i<NumberOfImages;i++) BannerAdImages[i]=new Image();
+BannerAdImages[i].src=''+ImageFolder+ImageFileNames[i];
+}
+}
+}
+function ChangeImage()
+{
+if(IsValidBrowser)
+{
+BannerAdCode=BannerAdCode+1; if(BannerAdCode==NumberOfImages)
+{
+BannerAdCode=0;
+}
+window.document.bannerad.src=BannerAdImages[BannerAdCode].src; TimerObject=setTimeout("ChangeImage()", DisplayInterval); 
+}
+}
+function ChangePage()
+{
+if(IsValidBrowser)
+{
+if(TargetFrame!=''&&(FramesObject))
+{
+FramesObject.location.href=ImageURLs[BannerAdCode];
+}
+else
+{
+document.location=ImageURLs[BannerAdcode];
+}
+}
+elseif(!IsValidBrowser)
+{
+document.location = DefaultURL;
+}
+}
+//-->
+</script>
+</head>
+<body onload="IntialiseBannerAdRotator()">
+<a href="javascript:ChangePage()">
+<img src= "AmazonAd1_anim.gif" alt="Banner Advertiesment" border="0" hspace="0" name="bannerad" WIDTH="466" Height="88">
+</a>
+<p> <h1> BannerCreation : Ad Rotator Example </h1> </p>
+</body>
+</html>
+
